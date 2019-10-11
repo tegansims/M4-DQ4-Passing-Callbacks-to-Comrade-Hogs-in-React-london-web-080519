@@ -19,9 +19,15 @@ export default class GalaxySNote7 extends React.Component {
   }
 
   throwAFit = () => {
+    this.setState({ panicked: true }) 
+    this.exclaim();
+    this.props.alterEnvironment('inhospitable')
+    let timer = setTimeout( this.relax, 2000)
   }
 
   relax = () => {
+    {this.setState({ panicked: false }) }
+    this.props.alterEnvironment('docile')
   }
 
   exclaim = () => {
@@ -34,7 +40,7 @@ export default class GalaxySNote7 extends React.Component {
 
   render() {
     return(
-      <div id="galaxy-s-note" onClick={this.exclaim}>
+      <div id="galaxy-s-note" onClick={this.throwAFit}>
         {(this.state.panicked) ? this.panic() : null}
       </div>
     )
